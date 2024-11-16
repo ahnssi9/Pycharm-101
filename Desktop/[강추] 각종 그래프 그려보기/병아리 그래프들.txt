@@ -1,0 +1,112 @@
+import pandas as pd
+import seaborn as sns
+
+hat = pd.read_csv('data/chick001.csv')
+print(hat)
+print(" ")
+print(hat['chick'].sum())
+print(hat['chick'].mean())
+print(hat['chick'].std())
+print(hat['chick'].median())
+print(hat['chick'].min())
+print(hat['chick'].max())
+print(" ")
+
+print(hat.describe())
+#------------------------------------------------------------
+hat1 = hat.sort_values(by=['chick'], ascending=True)
+hat1 = hat.sort_values(by=['chick'], ascending=False)
+#hat.sort_values(by=['chick','chick2','chick3'], ascending=[True,False,True])
+print(hat1)
+
+import matplotlib.pyplot as plt
+
+print(" ")
+plt.rc('font', family='Malgun Gothic')
+plt.rcParams['axes.unicode_minus'] = False  # 축의 음수 기호 표시
+plt.bar(hat['hatchery'], hat['chick'])
+plt.show()
+print("-----------------------------------------------------------")
+
+import seaborn as sns
+
+col7 = sns.color_palette('Pastel2', 7)
+plt.figure(figsize=(10, 7))
+plt.bar(hat['hatchery'], hat['chick'], color=col7, edgecolor='black')
+plt.xlabel('부화장')
+plt.ylabel('마리 수')
+plt.show()
+
+print("-----------------------------------------------------------")
+
+
+def addtext(x, y):
+    for i in range(len(x)):
+        plt.text(i, y[i] + 0.5, y[i], ha='center')
+
+
+col7 = sns.color_palette('Pastel2', 7)
+plt.figure(figsize=(15, 12))
+plt.bar(hat['hatchery'], hat['chick'], color=col7, edgecolor='black')
+addtext(hat['hatchery'], hat['chick'])
+plt.xlabel('부화장')
+plt.ylabel('마리 수')
+plt.show()
+
+print("-----------------------------------------------------------")
+
+print("-----------------------------------------------------------")
+
+
+def addtext(x, y):
+    for i in range(len(x)):
+        plt.text(i, y[i] + 0.5, y[i], ha='center')
+
+
+col7 = sns.color_palette('Pastel2', 7)
+plt.figure(figsize=(15, 12))
+plt.bar(hat['hatchery'], hat['chick'], color=col7, edgecolor='black')
+addtext(hat['hatchery'], hat['chick'])
+
+plt.hlines(20, -1, 7, colors='red', linestyle='dashed')
+plt.title('병아리 부화장 부화현황', fontsize=5)
+plt.xlabel('부화장')
+plt.ylabel('마리 수')
+plt.show()
+
+print("-----------------------------------------------------------")
+
+col7 = sns.color_palette('Pastel2', 7)
+plt.figure(figsize=(10, 10))
+plt.pie(hat['chick'], labels=hat['chick'], colors=col7, autopct='%.1f%%', startangle=90)
+plt.show()
+print("-----------------------------------------------------------")
+
+b = pd.read_csv('data/chick002.csv')  # b 변수에 데이터셋 입력
+print(b)
+print(b.describe())
+
+plt.hist(b.weight)
+plt.title('병아리 부화장 무게 ', fontsize=17)
+plt.xlabel('부화장')
+plt.ylabel('마리 수')
+plt.show()
+print("-----------------------------------------------------------")
+
+plt.boxplot(b.weight)
+plt.title('병아리 부화장 무게 ', fontsize=17)
+plt.show()
+
+print("-----------------------------------------------------------")
+
+plt.figure(figsize=(10, 12))
+plt.subplot(1, 2, 1)
+plt.hist(b.weight, bins=7)
+plt.title('병아리 부화장 무게 ', fontsize=17)
+plt.xlabel('부화장')
+plt.ylabel('마리 수')
+
+plt.subplot(1, 2, 2)
+plt.boxplot(b.weight, vert=False)
+plt.title('병아리 부화장 무게 ', fontsize=17)
+plt.show()
